@@ -1,37 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1400" role="img" aria-label="MTV 00s">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 1300" role="img" aria-label="MTV 00s">
   <title>MTV 00s</title>
+  <!-- On-air bug: the M over the 00s pill, no wordmark — the way a DOG reads
+       at the corner of a broadcast frame. -->
   <g fill="#ff9ff0">
-    <!-- M: main block, notched at the top and bottom -->
-    <path d="M12 0 H418 L512 132 L608 0 H1032 V858 H652 L652 858 L530 505 L415 858 H12 Z"/>
-    <!-- the right leg, split off by a hairline of white -->
+    <path d="M12 0 H418 L512 132 L608 0 H1032 V858 H652 L530 505 L415 858 H12 Z"/>
     <path d="M1058 0 H1132 L1108 858 H1050 Z"/>
   </g>
-
-  <!-- TV, brushed over the M -->
   <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
     <path d="M478 452 C 600 384 762 302 902 268" stroke-width="74"/>
     <path d="M742 306 C 762 436 766 566 762 706" stroke-width="82"/>
     <path d="M858 336 C 898 452 928 556 952 648" stroke-width="80"/>
   </g>
-  <!-- the V's tail, tapering up to its knot -->
   <path fill="#ffffff" d="M912 618 L1178 168 C1196 138 1240 138 1252 168 C1262 194 1244 216 1224 226 L992 700 Z"/>
   <circle cx="1222" cy="176" r="34" fill="#ffffff"/>
 
-  <!-- wordmark -->
-  <text x="572" y="972" text-anchor="middle" textLength="1060" lengthAdjust="spacingAndGlyphs"
-        fill="#ff9ff0" font-family="Archivo, 'Arial Black', 'Helvetica Neue', Helvetica, sans-serif"
-        font-size="126" font-weight="900">MUSIC TELEVISION</text>
-
-  <!-- 00s pill -->
-  <rect x="55" y="1022" width="1020" height="372" rx="186" fill="#ff9ff0"/>
-  <rect x="93" y="1060" width="944" height="296" rx="148" fill="none" stroke="#ffffff" stroke-width="10"/>
-  <g fill="#ffffff">
-    <!-- the zeros are rounded-square rings, not type -->
+  <rect x="20" y="960" width="1120" height="320" rx="160" fill="#ff9ff0"/>
+  <rect x="54" y="994" width="1052" height="252" rx="126" fill="none" stroke="#ffffff" stroke-width="10"/>
+  <g fill="#ffffff" transform="translate(580 1120) scale(1.12) translate(-565 -1208)">
     <path fill-rule="evenodd" d="M275 1108 h130 a55 55 0 0 1 55 55 v90 a55 55 0 0 1 -55 55 h-130 a55 55 0 0 1 -55 -55 v-90 a55 55 0 0 1 55 -55 z
              M282 1163 a8 8 0 0 0 -8 8 v74 a8 8 0 0 0 8 8 h116 a8 8 0 0 0 8 -8 v-74 a8 8 0 0 0 -8 -8 z"/>
     <path fill-rule="evenodd" d="M545 1108 h130 a55 55 0 0 1 55 55 v90 a55 55 0 0 1 -55 55 h-130 a55 55 0 0 1 -55 -55 v-90 a55 55 0 0 1 55 -55 z
              M552 1163 a8 8 0 0 0 -8 8 v74 a8 8 0 0 0 8 8 h116 a8 8 0 0 0 8 -8 v-74 a8 8 0 0 0 -8 -8 z"/>
-    <!-- squared s, built from bars so it stays a shape and not a font -->
     <rect x="760" y="1148" width="150" height="48" rx="24"/>
     <rect x="760" y="1148" width="48"  height="104" rx="24"/>
     <rect x="760" y="1204" width="150" height="48" rx="24"/>

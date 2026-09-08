@@ -103,12 +103,19 @@ Vevo, mas o YouTube pode bloquear a incorporação de um vídeo a qualquer momen
 e isso varia por país. Quando acontece, o canal marca o clipe como morto, entra
 com um bumper e segue para o próximo — o erro nunca vira tela preta.
 
-## Trocando o logo
+## Logo
 
-`assets/logo.svg` é uma reconstrução geométrica do lockup MTV 00's, desenhada
-para não depender de fontes ou imagens de terceiros. Para usar o arquivo
-oficial, basta substituir esse SVG mantendo o nome — nada no código precisa
-mudar.
+São dois arquivos, porque o canal usa dois lockups diferentes:
+
+- `assets/logo.svg` — lockup completo (M + MUSIC TELEVISION + pílula 00s).
+  Usado na tela de entrada e nos bumpers.
+- `assets/bug.svg` — versão compacta (só o M sobre a pílula 00s). É o que vai
+  no canto da tela e no cabeçalho do guia, onde o wordmark ficaria ilegível.
+
+Ambos são traçados à mão em SVG a partir da marca oficial: formas geométricas
+e traços de pincel, sem depender de fonte ou imagem externa. Para usar os
+arquivos oficiais, basta substituí-los mantendo os nomes — nada no código
+precisa mudar.
 
 ## Testes
 

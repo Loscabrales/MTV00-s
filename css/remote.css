@@ -134,7 +134,7 @@ body[data-paused="true"] .rbtn[data-action="pause"] .play { display: inline; }
   padding: 3cqh var(--safe-x);
   border-bottom: 2px solid rgba(255,111,229,.3);
 }
-.epg__logo { height: 9cqh; width: auto; }
+.epg__logo { height: 12cqh; width: auto; }
 .epg__title {
   margin: 0;
   flex: 1;

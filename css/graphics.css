@@ -13,7 +13,7 @@
 body[data-power="on"] .bug { opacity: .92; transform: none; }
 .bug__logo {
   display: block;
-  height: 11cqh;
+  height: 16cqh;
   width: auto;
   filter: drop-shadow(0 .4cqh 1.2cqh rgba(0,0,0,.55));
 }
@@ -150,7 +150,7 @@ body[data-power="on"] .bug { opacity: .92; transform: none; }
   to   { transform: none; opacity: 1; }
 }
 .bumper__logo {
-  height: 42cqh;
+  height: 54cqh;
   width: auto;
 }
 .bumper__strap {
@@ -234,7 +234,7 @@ body[data-power="tuning"] .splash {
   text-align: center;
 }
 .splash__logo {
-  width: clamp(150px, 24vmin, 300px);
+  width: clamp(210px, 31vmin, 400px);
   height: auto;
   animation: logoPulse 3.4s ease-in-out infinite;
 }
