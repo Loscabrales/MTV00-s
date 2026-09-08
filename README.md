@@ -105,17 +105,26 @@ com um bumper e segue para o próximo — o erro nunca vira tela preta.
 
 ## Logo
 
-São dois arquivos, porque o canal usa dois lockups diferentes:
+A arte é a oficial, do arquivo vetorial publicado no Wikimedia Commons
+([`MTV 00s logo.svg`](https://commons.wikimedia.org/wiki/File:MTV_00s_logo.svg),
+domínio público como forma simples, marca registrada da ViacomCBS Networks
+EMEAA). O arquivo foi limpo (metadados de editor removidos) e derivado em três
+peças:
 
 - `assets/logo.svg` — lockup completo (M + MUSIC TELEVISION + pílula 00s).
-  Usado na tela de entrada e nos bumpers.
-- `assets/bug.svg` — versão compacta (só o M sobre a pílula 00s). É o que vai
-  no canto da tela e no cabeçalho do guia, onde o wordmark ficaria ilegível.
+  Tela de entrada e bumpers.
+- `assets/bug.svg` — versão compacta (só o M sobre a pílula 00s). Vai no canto
+  da tela e no cabeçalho do guia, onde o wordmark ficaria ilegível.
+- `assets/favicon.svg` — só o M, sobre fundo preto arredondado.
 
-Ambos são traçados à mão em SVG a partir da marca oficial: formas geométricas
-e traços de pincel, sem depender de fonte ou imagem externa. Para usar os
-arquivos oficiais, basta substituí-los mantendo os nomes — nada no código
-precisa mudar.
+Uma adaptação foi necessária: no arquivo original o "TV" é **vazado**, ou seja,
+um buraco no M. Isso funciona no papel branco, mas sobre vídeo escuro o TV
+apareceria preto. As três peças recebem uma cópia da silhueta externa do M
+preenchida de branco por trás, o que faz o vazado ler como branco em qualquer
+fundo — sem alterar a geometria da marca.
+
+O rosa do sistema (`--pink` em `css/tokens.css`) é o `#ffa0fc` do arquivo
+oficial.
 
 ## Testes
 

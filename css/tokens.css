@@ -1,7 +1,7 @@
 /* MTV 00s — design tokens (2020 pink rebrand) */
 :root {
   /* palette */
-  --pink:        #ff6fe5;
+  --pink:        #ffa0fc;   /* the pink from the official MTV 00s artwork */
   --pink-hot:    #ff3dce;
   --pink-deep:   #d81fa8;
   --indigo:      #2b1ac8;
