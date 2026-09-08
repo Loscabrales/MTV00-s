@@ -10,13 +10,14 @@
 import { loadPlaylist } from './playlist.js';
 import { createSchedule, nowSeconds } from './schedule.js';
 import { createPlayer, PlayerState } from './player.js';
+import { createInvidiousPlayer } from './invidious.js';
 import { createGraphics } from './graphics.js';
 import { createRemote } from './remote.js';
 
 const $ = (id) => document.getElementById(id);
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const STORE = { volume: 'mtv00s.volume', muted: 'mtv00s.muted' };
+const STORE = { volume: 'mtv00s.volume', muted: 'mtv00s.muted', source: 'mtv00s.source' };
 const WATCHDOG_MS = 9000;
 const DRIFT_TOLERANCE = 5; // seconds
 
@@ -48,6 +49,19 @@ async function boot() {
 
   // ---------------------------------------------------------------- state
   let player = null;
+  // 'adfree' plays through Invidious, which serves no advertising; 'youtube'
+  // is the official embed, which carries ads but has a real API and does not
+  // depend on a volunteer-run instance.
+  //
+  // YouTube is the default because the ad-free path is not dependable: the
+  // only public instance still serving embeds fails roughly half its requests
+  // with "Companion is starting, please wait until a valid potoken is found"
+  // — YouTube now demands a proof-of-origin token the instance has to keep
+  // minting. Ad-free is therefore opt-in, and ?source= or the S key switches.
+  const forced = new URLSearchParams(location.search).get('source');
+  let source = forced === 'youtube' || forced === 'adfree'
+    ? forced
+    : (read(STORE.source, 'youtube') === 'adfree' ? 'adfree' : 'youtube');
   let volume = Math.max(0, Math.min(100, Number(read(STORE.volume, 80)) || 80));
   let muted = Boolean(read(STORE.muted, false));
   let currentIndex = 0;
@@ -65,9 +79,23 @@ async function boot() {
     skip,
     setVolume,
     nudgeVolume: (d) => setVolume(volume + d),
+    switchSource,
   }});
 
   remote.paintVolume(volume, muted);
+  remote.paintSource(source);
+
+  /**
+   * Swapping the video source swaps the whole player, so the cleanest change
+   * is a reload: the schedule is derived from the clock, so the channel comes
+   * back on the same video at the same second.
+   */
+  function switchSource() {
+    source = adFree() ? 'youtube' : 'adfree';
+    write(STORE.source, source);
+    remote.paintSource(source);
+    location.reload();
+  }
 
   // ---------------------------------------------------------------- audio
   function applyAudio() {
@@ -113,6 +141,12 @@ async function boot() {
     }, WATCHDOG_MS);
   }
 
+  const adFree = () => source === 'adfree';
+
+  function startVideo(item, offset) {
+    player.play(item.id, offset, item.duration);
+  }
+
   function trackGraphics(slot) {
     graphics.startTrack({
       item: slot.item,
@@ -142,18 +176,24 @@ async function boot() {
         title: `${slot.item.artist} — ${slot.item.title}`,
         ms: slot.bumperLeft * 1000,
       });
-      player.mute();
-      player.play(slot.item.id, 0);
-      armWatchdog();
+      // The YouTube player can buffer silently behind the card. Invidious
+      // cannot be muted after load, so there it simply starts when the card
+      // lifts rather than playing its opening bars underneath.
+      if (!adFree()) {
+        player.mute();
+        startVideo(slot.item, 0);
+        armWatchdog();
+      }
       await wait(slot.bumperLeft * 1000);
       if (token !== airToken) return;
-      player.seek(0);
+      if (adFree()) { startVideo(slot.item, 0); armWatchdog(); }
+      else player.seek(0);
       graphics.hideBumper();
       applyAudio();
       trackGraphics({ ...slot, remaining: slot.item.duration });
     } else {
       graphics.hideBumper();
-      player.play(slot.item.id, slot.offset);
+      startVideo(slot.item, slot.offset);
       applyAudio();
       armWatchdog();
       trackGraphics(slot);
@@ -168,12 +208,11 @@ async function boot() {
     drifting = true;
 
     graphics.showBumper({ kicker: 'COMING UP', title: `${item.artist} — ${item.title}`, ms: 2200 });
-    player.mute();
-    player.play(item.id, 0);
-    armWatchdog();
+    if (!adFree()) { player.mute(); startVideo(item, 0); armWatchdog(); }
     await wait(2200);
     if (token !== airToken) return;
-    player.seek(0);
+    if (adFree()) { startVideo(item, 0); armWatchdog(); }
+    else player.seek(0);
     graphics.hideBumper();
     applyAudio();
     graphics.startTrack({
@@ -208,6 +247,7 @@ async function boot() {
   // ---------------------------------------------------------------- drift
   setInterval(() => {
     if (!player || paused || drifting || document.hidden) return;
+    if (adFree()) return;   // a seek here means reloading the frame — not worth it
     if (player.getState() !== PlayerState.PLAYING) return;
     if (!graphics) return;
 
@@ -232,7 +272,8 @@ async function boot() {
     graphics.noise(true);
 
     try {
-      player = await createPlayer('player', {
+      const make = adFree() ? createInvidiousPlayer : createPlayer;
+      player = await make('player', {
         onStateChange: (state) => {
           if (state === PlayerState.PLAYING) {
             sawPlaying = true;

@@ -3,7 +3,9 @@ import fs from 'node:fs';
 
 const HERE = new URL('.', import.meta.url).pathname;
 const SHOTS = process.env.SHOT_DIR || HERE;
-const PAGE = process.env.PAGE_URL || 'http://localhost:8000/index.html';
+const BASE = process.env.PAGE_URL || 'http://localhost:8000/index.html';
+// the bulk of the suite exercises the YouTube backend, which has a real API
+const PAGE = `${BASE}?source=youtube`;
 const MOCK = fs.readFileSync(`${HERE}/yt-mock.js`, 'utf8');
 const FONTS = fs.existsSync(`${HERE}/fonts.css`) ? fs.readFileSync(`${HERE}/fonts.css`, 'utf8') : '';
 
@@ -197,6 +199,31 @@ for (const [w, h, label] of [[390, 844, 'phone portrait'], [844, 390, 'phone lan
   });
   ok(Math.abs(r.ar - 16 / 9) < 0.02 && !r.scrollX,
      `${label}: stage stays 16:9 (${Math.round(r.w)}×${Math.round(r.h)}) with no horizontal scroll`);
+}
+
+head('ad-free source');
+{
+  const ad = await makePage(1280, 720);
+  await ad.goto(`${BASE}?source=adfree`, { waitUntil: 'networkidle' });
+  await ad.click('#power-on');
+  await ad.waitForFunction(() => document.body.dataset.power === 'on', null, { timeout: 30000 })
+    .catch(() => {});
+  const src = await ad.getAttribute('#player', 'src').catch(() => '');
+  ok(/invidious/.test(src || ''), `the picture comes from Invidious, which serves no adverts (${(src||'').slice(0, 46)}…)`);
+  ok(/subtitles=/.test(src || ''), 'captions are switched off at load');
+  ok(/controls=0/.test(src || ''), 'no player controls');
+  ok(/[?&]start=\d/.test(src || ''), 'joins at the point the clock says, not from the top');
+  ok(await ad.textContent('#src-btn') === 'AD-FREE', 'the remote reports the ad-free source');
+  ok(!/youtube/.test(src || ''), 'no YouTube frame is loaded in this mode');
+  await ad.close();
+}
+
+head('the two sources are switchable');
+{
+  const sw = await makePage(1280, 720);
+  await sw.goto(`${BASE}?source=youtube`, { waitUntil: 'networkidle' });
+  ok(await sw.textContent('#src-btn') === 'YOUTUBE', 'YouTube mode is reported on the remote');
+  await sw.close();
 }
 
 console.log('\nconsole errors:', errors.length ? errors.slice(0, 6) : 'none');

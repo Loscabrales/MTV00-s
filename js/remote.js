@@ -12,6 +12,7 @@ export function createRemote({ actions, schedule }) {
     vol: $('vol'),
     volNum: $('vol-num'),
     epg: $('epg'),
+    srcBtn: $('src-btn'),
     epgPrev: $('epg-prev'),
     epgNext: $('epg-next'),
     epgNow: $('epg-now'),
@@ -74,6 +75,7 @@ export function createRemote({ actions, schedule }) {
       case 'mute': actions.toggleMute(); break;
       case 'pause': actions.togglePause(); break;
       case 'skip': actions.skip(); break;
+      case 'source': actions.switchSource(); break;
       case 'guide': toggleGuide(); break;
       case 'fullscreen': toggleFullscreen(); break;
       default: break;
@@ -157,6 +159,7 @@ export function createRemote({ actions, schedule }) {
       m: () => actions.toggleMute(),
       f: () => toggleFullscreen(),
       g: () => toggleGuide(),
+      s: () => actions.switchSource(),
       ' ': () => actions.togglePause(),
       escape: () => (guideOpen ? toggleGuide(false) : null),
     }[key];
@@ -167,5 +170,12 @@ export function createRemote({ actions, schedule }) {
     handled();
   });
 
-  return { show, hide, paintVolume, toggleGuide, renderGuide };
+  const paintSource = (source) => {
+    els.srcBtn.textContent = source === 'adfree' ? 'AD-FREE' : 'YOUTUBE';
+    els.srcBtn.title = source === 'adfree'
+      ? 'Playing through Invidious — no adverts. Press S for YouTube.'
+      : 'Playing through YouTube — adverts may run. Press S for the ad-free source.';
+  };
+
+  return { show, hide, paintVolume, paintSource, toggleGuide, renderGuide };
 }

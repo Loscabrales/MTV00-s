@@ -35,6 +35,39 @@ Pular um clipe ou topar com um vídeo indisponível tira você da grade
 temporariamente; ao terminar o clipe atual o canal volta a se sincronizar
 sozinho com o relógio.
 
+### Anúncios e a fonte do vídeo
+
+O site tem duas fontes, alternáveis pela tecla `S` ou por `?source=`:
+
+**`youtube`** (padrão) — o embed oficial. Estável, com API de verdade (eventos
+de fim, erro, volume, seek). **Roda anúncio quando o YouTube servir.**
+
+**`adfree`** — a mesma origem, mas por uma instância [Invidious](https://invidious.io),
+que não serve publicidade (`js/invidious.js`).
+
+Não existe outra forma. O player oficial fica num iframe de outra origem: a
+política de mesma origem impede a página de tocar em qualquer coisa lá dentro,
+e não há parâmetro nem método de API que desligue anúncio. `youtube-nocookie`
+não ajuda — só torna o anúncio não-personalizado.
+
+> **O modo sem anúncio é experimental e não é confiável.** Das 11 instâncias
+> públicas existentes, todas têm a API desativada e sem CORS, e só uma
+> (`invidious.tiekoetter.com`) ainda serve embeds. Medindo 6 requisições
+> seguidas nela, **3 falharam** com *"Companion is starting. Please wait until
+> a valid potoken is found"*: o YouTube passou a exigir um proof-of-origin
+> token que a instância precisa cunhar sem parar, e quando ele expira tudo cai.
+>
+> A falha **não é detectável pela página** — o iframe é de outra origem, então
+> uma página de erro é indistinguível de uma que funciona. Não há como voltar
+> automaticamente para o YouTube. Se a imagem sumir, aperte `S`.
+
+Nesse modo também se perde o controle fino: o Invidious não tem API de
+mensagens, então o fim do vídeo é cronometrado pela grade (que já é derivada do
+relógio) e mudar volume recarrega o quadro na posição correta.
+
+Quem quiser assistir sem anúncio de forma confiável: um bloqueador no navegador
+(uBlock Origin) resolve por completo, no modo YouTube.
+
 ### Escondendo o YouTube
 
 São quatro camadas, e nenhuma delas basta sozinha:
@@ -61,6 +94,7 @@ sozinho depois de ~3s.
 | `M` | Mudo |
 | `→` | Próximo clipe |
 | `Espaço` | Pausa (volta ao vivo ao despausar) |
+| `S` | Alterna a fonte do vídeo (YouTube ↔ sem anúncio) |
 | `G` | Guia de programação |
 | `F` | Tela cheia |
 | `Esc` | Fecha o guia |
