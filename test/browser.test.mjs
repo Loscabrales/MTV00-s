@@ -52,6 +52,10 @@ ok(cfg.iv_load_policy === 3, 'iv_load_policy=3 — no annotations');
 ok(cfg.playsinline === 1, 'playsinline=1 — iOS cannot take over with its native player');
 ok(cfg.fs === 0, 'fs=0 — no YouTube fullscreen button');
 ok(await page.evaluate(() => window.__mock.embedHost.includes('nocookie')), 'served from the nocookie host');
+ok(cfg.cc_load_policy === 0, 'cc_load_policy=0 — captions are not forced on');
+ok(await page.evaluate(() => window.__mock.calls.some(c => c[0] === 'unloadModule' && c[1] === 'captions'))
+   && await page.evaluate(() => window.__mock.calls.some(c => c[0] === 'unloadModule' && c[1] === 'cc')),
+   'the caption module is unloaded, so a viewer with captions on still sees none');
 
 const hits = await page.evaluate(() => {
   const st = document.getElementById('stage').getBoundingClientRect();

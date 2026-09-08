@@ -55,7 +55,8 @@ export async function createPlayer(elementId, handlers = {}) {
         rel: 0,             // no end-of-video grid from other channels
         playsinline: 1,     // iOS must not take over with its native player
         iv_load_policy: 3,  // no annotations
-        cc_load_policy: 0,
+        cc_load_policy: 0,  // do not force captions on; see killCaptions below
+        cc_lang_pref: 'none',
         fs: 0,
         modestbranding: 1,  // deprecated, kept as belt-and-braces
         origin: window.location.origin,
@@ -72,10 +73,28 @@ export async function createPlayer(elementId, handlers = {}) {
     try { return fn(...args); } catch { return undefined; }
   };
 
+  /**
+   * cc_load_policy: 0 only means "do not force captions on" — a viewer whose
+   * YouTube preference is captions-on still gets them burned over the video,
+   * which fights the channel's own lower third. Unloading the caption module
+   * is what actually takes them off. The module is named 'captions' on the
+   * older player and 'cc' on the newer one, so both are tried, and it is
+   * re-applied on every load because a new video reloads the module.
+   */
+  const killCaptions = () => {
+    for (const mod of ['captions', 'cc']) {
+      try { player.unloadModule(mod); } catch { /* module not present */ }
+    }
+    try { player.setOption('captions', 'track', {}); } catch { /* ditto */ }
+  };
+
   return {
     raw: player,
-    play: safe((id, startSeconds) =>
-      player.loadVideoById({ videoId: id, startSeconds: Math.max(0, Math.floor(startSeconds || 0)) })),
+    play: safe((id, startSeconds) => {
+      player.loadVideoById({ videoId: id, startSeconds: Math.max(0, Math.floor(startSeconds || 0)) });
+      killCaptions();
+    }),
+    killCaptions,
     resume: safe(() => player.playVideo()),
     seek: safe((s) => player.seekTo(Math.max(0, s), true)),
     pause: safe(() => player.pauseVideo()),

@@ -27,6 +27,8 @@
       f.src = M.embedHost + '/embed/' + o.videoId + '?' + M.params.toString();
       setTimeout(function () { M.fire(1); }, 40);
     };
+    this.unloadModule = function (m) { M.calls.push(['unloadModule', m]); };
+    this.setOption = function (a, b) { M.calls.push(['setOption', a, b]); };
     this.playVideo = function () { M.fire(1); };
     this.pauseVideo = function () { M.fire(2); };
     this.stopVideo = function () { M.fire(-1); M.vid = null; };

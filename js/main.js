@@ -237,6 +237,8 @@ async function boot() {
           if (state === PlayerState.PLAYING) {
             sawPlaying = true;
             clearTimeout(watchdog);
+            // the caption module comes back with each new video
+            player?.killCaptions();
           }
           if (state === PlayerState.ENDED) {
             // always snap back to the live grid at a natural boundary
