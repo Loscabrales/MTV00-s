@@ -1,0 +1,44 @@
+/* MTV 00s — design tokens (2020 pink rebrand) */
+:root {
+  /* palette */
+  --pink:        #ff6fe5;
+  --pink-hot:    #ff3dce;
+  --pink-deep:   #d81fa8;
+  --indigo:      #2b1ac8;
+  --indigo-lo:   #1c0f8f;
+  --indigo-hi:   #4a37f0;
+  --white:       #ffffff;
+  --black:       #000000;
+  --ink:         #0a0512;
+
+  /* type */
+  --font-ui: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-cond: "Archivo Narrow", "Archivo", "Helvetica Neue", Arial Narrow, sans-serif;
+
+  /* broadcast safe-area: graphics never touch the very edge */
+  --safe-x: clamp(14px, 3.4vmin, 42px);
+  --safe-y: clamp(12px, 3vmin, 36px);
+
+  /* the iframe is drawn slightly larger than the stage so no YouTube chrome
+     can ever reach a visible edge */
+  --overscan: 1.06;
+
+  /* motion */
+  --ease-broadcast: cubic-bezier(.16, .84, .28, 1);
+  --ease-snap: cubic-bezier(.7, 0, .2, 1);
+
+  /* layers */
+  --z-video: 1;
+  --z-shield: 2;
+  --z-static: 3;
+  --z-gfx: 4;
+  --z-bumper: 5;
+  --z-paused: 6;
+  --z-epg: 7;
+  --z-remote: 8;
+  --z-splash: 9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --overscan: 1.06; }
+}

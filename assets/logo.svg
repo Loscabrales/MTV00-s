@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" role="img" aria-label="MTV 00s">
+  <title>MTV 00s</title>
+  <g fill="#ff6fe5">
+    <path d="M8 10 H54 L100 96 L146 10 H192 L168 170 H130 L144 80 L108 148 H92 L56 80 L46 170 H8 Z"/>
+    <!-- textLength keeps the wordmark inside the box whatever font resolves -->
+    <text x="100" y="196" text-anchor="middle" textLength="188" lengthAdjust="spacingAndGlyphs"
+          font-family="Archivo, 'Arial Black', 'Helvetica Neue', Helvetica, sans-serif"
+          font-size="26" font-weight="900">MUSIC TELEVISION</text>
+    <rect x="4" y="208" width="192" height="68" rx="34" ry="34"/>
+  </g>
+  <!-- TV scrawled over the M in solid white: legible over video and on dark -->
+  <text x="130" y="142" text-anchor="middle" transform="rotate(-9 130 142) skewX(-7)"
+        fill="#ffffff" font-family="'Arial Black', Archivo, 'Helvetica Neue', Helvetica, sans-serif"
+        font-size="96" font-weight="900" font-style="italic">TV</text>
+  <rect x="11" y="215" width="178" height="54" rx="27" ry="27" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  <text x="100" y="261" text-anchor="middle" fill="#ffffff"
+        font-family="Archivo, 'Arial Black', 'Helvetica Neue', Helvetica, sans-serif"
+        font-size="44" font-weight="900" letter-spacing="1">00s</text>
+</svg>

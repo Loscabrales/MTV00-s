@@ -1,0 +1,48 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - claude/mtv-00s-video-player-ph8am1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate the playlist
+        run: |
+          python3 - <<'PY'
+          import json, re, sys
+          doc = json.load(open('data/playlist.json'))
+          items = doc['items']
+          bad = [i for i in items if not re.fullmatch(r'[A-Za-z0-9_-]{11}', i.get('id',''))]
+          missing = [i for i in items if not i.get('artist') or not i.get('title')]
+          dupes = len(items) - len({i['id'] for i in items})
+          if bad or missing or dupes:
+              print('bad ids:', bad); print('missing fields:', missing); print('duplicates:', dupes)
+              sys.exit(1)
+          print(f'playlist ok: {len(items)} videos')
+          PY
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

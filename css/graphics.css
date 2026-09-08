@@ -1,0 +1,308 @@
+/* On-screen graphics package — everything scales off the stage box */
+.stage { container-type: size; container-name: stage; }
+
+/* ---------------- screen bug (DOG) ---------------- */
+.bug {
+  position: absolute;
+  top: var(--safe-y);
+  left: var(--safe-x);
+  opacity: 0;
+  transform: translateY(-8%);
+  transition: opacity .6s var(--ease-broadcast), transform .6s var(--ease-broadcast), filter .4s linear;
+}
+body[data-power="on"] .bug { opacity: .92; transform: none; }
+.bug__logo {
+  display: block;
+  height: 11cqh;
+  width: auto;
+  filter: drop-shadow(0 .4cqh 1.2cqh rgba(0,0,0,.55));
+}
+.bug[data-glow="true"] { filter: drop-shadow(0 0 1.4cqh var(--pink)); }
+
+/* ---------------- lower third ---------------- */
+.lower {
+  position: absolute;
+  left: var(--safe-x);
+  bottom: var(--safe-y);
+  display: flex;
+  align-items: center;
+  gap: 1.2cqh;
+  max-width: calc(100% - (var(--safe-x) * 2));
+  --lift: 0px;
+  transform: translate(-6%, var(--lift));
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform .62s var(--ease-broadcast),
+    opacity .34s linear,
+    visibility 0s linear .62s;
+}
+.lower[data-state="shown"] {
+  transform: translate(0, var(--lift));
+  opacity: 1;
+  visibility: visible;
+  transition:
+    transform .62s var(--ease-broadcast),
+    opacity .24s linear,
+    visibility 0s;
+}
+
+.lower__knob {
+  display: flex;
+  align-items: center;
+  gap: .3cqh;
+  flex: none;
+}
+.lower__knob i {
+  width: 4.4cqh;
+  height: 4.4cqh;
+  border-radius: 50%;
+  border: .55cqh solid var(--indigo);
+  background: var(--white);
+  box-shadow: inset 0 0 0 .5cqh var(--white);
+}
+.lower__knob i:last-child {
+  width: 5.6cqh; height: 5.6cqh;
+  background: var(--indigo);
+  box-shadow: inset 0 0 0 .55cqh var(--white);
+}
+
+.lower__bar {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  height: 7.2cqh;
+  padding: .55cqh;
+  gap: .55cqh;
+  background: linear-gradient(180deg, var(--indigo-hi), var(--indigo-lo));
+  border: .3cqh solid var(--white);
+  border-radius: 999px;
+  box-shadow: 0 .8cqh 2.4cqh rgba(0,0,0,.5);
+}
+
+.lower__label {
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0 2.2cqh;
+  background: var(--white);
+  border-radius: 999px;
+  color: var(--indigo);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 3.1cqh;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.lower__text {
+  display: grid;
+  place-items: center start;
+  min-width: 0;
+  padding: 0 3cqh 0 1.6cqh;
+  color: var(--white);
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 3.4cqh;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* the bar reveals itself left-to-right, broadcast style */
+.lower[data-state="shown"] .lower__bar { animation: barWipe .55s var(--ease-broadcast) both; }
+@keyframes barWipe {
+  from { clip-path: inset(0 100% 0 0 round 999px); }
+  to   { clip-path: inset(0 0 0 0 round 999px); }
+}
+
+/* ---------------- bumper / ident ---------------- */
+.bumper {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-bumper);
+  display: grid;
+  place-items: center;
+  /* indigo card: the pink M, the white TV and the white 00s all read on it */
+  background: linear-gradient(180deg, var(--indigo-hi), var(--indigo-lo));
+  overflow: hidden;
+}
+.bumper[hidden] { display: none; }
+.bumper__flash {
+  position: absolute;
+  inset: 0;
+  background: var(--pink-hot);
+  animation: flash .45s var(--ease-snap) both;
+}
+@keyframes flash { from { opacity: 1; } to { opacity: 0; } }
+
+.bumper__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4cqh;
+  animation: bumpIn .5s var(--ease-broadcast) both;
+}
+@keyframes bumpIn {
+  from { transform: scale(.9); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+.bumper__logo {
+  height: 42cqh;
+  width: auto;
+}
+.bumper__strap {
+  display: flex;
+  align-items: center;
+  gap: 1.4cqh;
+  padding: 1.1cqh 2.6cqh;
+  max-width: 88cqw;
+  /* reversed against the indigo card so it does not sink into it */
+  background: var(--white);
+  border-radius: 999px;
+}
+.bumper__kicker {
+  font-weight: 800;
+  font-size: 2.6cqh;
+  letter-spacing: .16em;
+  color: var(--pink-deep);
+}
+.bumper__title {
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 3.2cqh;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--indigo);
+}
+.bumper[data-variant="ident"] .bumper__strap { display: none; }
+
+/* ---------------- paused card (never show YouTube's own pause UI) -------- */
+.paused {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-paused);
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.88);
+  backdrop-filter: blur(6px);
+}
+.paused[hidden] { display: none; }
+.paused__inner {
+  display: flex;
+  align-items: center;
+  gap: 2.4cqh;
+  font-weight: 800;
+  font-size: 5cqh;
+  letter-spacing: .22em;
+  color: var(--pink);
+}
+.paused__bars { display: flex; gap: 1cqh; }
+.paused__bars i {
+  display: block;
+  width: 1.7cqh; height: 6cqh;
+  background: var(--pink);
+  border-radius: .4cqh;
+}
+
+/* ---------------- power-on splash ---------------- */
+.splash {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-splash);
+  display: grid;
+  place-items: center;
+  background: radial-gradient(120% 120% at 50% 45%, #1a0320 0%, var(--black) 70%);
+  transition: opacity .45s linear, visibility 0s linear .45s;
+}
+body[data-power="on"] .splash,
+body[data-power="tuning"] .splash {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.splash__inner {
+  display: grid;
+  justify-items: center;
+  gap: clamp(20px, 4vmin, 44px);
+  padding: 24px;
+  text-align: center;
+}
+.splash__logo {
+  width: clamp(150px, 24vmin, 300px);
+  height: auto;
+  animation: logoPulse 3.4s ease-in-out infinite;
+}
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50%      { filter: drop-shadow(0 0 30px rgba(255,111,229,.55)); }
+}
+.splash__btn {
+  appearance: none;
+  border: 3px solid var(--pink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pink);
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: clamp(16px, 2.6vmin, 26px);
+  letter-spacing: .28em;
+  text-indent: .28em;
+  padding: .75em 2em;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .2s var(--ease-snap);
+}
+.splash__btn:hover,
+.splash__btn:focus-visible { background: var(--pink); color: var(--black); transform: scale(1.04); }
+.splash__hint {
+  margin: 0;
+  font-size: clamp(11px, 1.5vmin, 14px);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.splash__status {
+  position: absolute;
+  bottom: 6vmin;
+  margin: 0;
+  font-family: var(--font-cond);
+  font-size: clamp(11px, 1.5vmin, 14px);
+  letter-spacing: .3em;
+  color: var(--pink);
+  opacity: .8;
+}
+
+/* CRT power-on sweep */
+body[data-power="tuning"] .stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: var(--white);
+  animation: crtOn .85s var(--ease-snap) both;
+  pointer-events: none;
+}
+@keyframes crtOn {
+  0%   { clip-path: inset(50% 0 50% 0); opacity: 1; }
+  35%  { clip-path: inset(49.5% 0 49.5% 0); opacity: 1; }
+  70%  { clip-path: inset(0 0 0 0); opacity: .5; }
+  100% { clip-path: inset(0 0 0 0); opacity: 0; }
+}
+
+/* focus */
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bumper__flash,
+  .bumper__inner,
+  .splash__logo,
+  body[data-power="tuning"] .stage::after,
+  .lower[data-state="shown"] .lower__bar { animation: none !important; }
+  .static { display: none; }
+  * { transition-duration: .01ms !important; }
+}
