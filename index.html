@@ -7,9 +7,7 @@
 <meta name="description" content="MTV 00s — a linear music television channel of 2000s music videos.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Archivo+Narrow:wght@500..700&display=swap">
+<link rel="preload" href="./assets/eurostileunicaseltpro.otf" as="font" type="font/otf" crossorigin>
 <link rel="stylesheet" href="./css/tokens.css">
 <link rel="stylesheet" href="./css/layout.css">
 <link rel="stylesheet" href="./css/graphics.css">
@@ -38,11 +36,8 @@
       </div>
 
       <div id="lower" class="lower" data-state="hidden">
-        <div class="lower__knob" aria-hidden="true"><i></i><i></i></div>
-        <div class="lower__bar">
-          <div class="lower__label"><span id="lower-label">NOW</span></div>
-          <div class="lower__text"><span id="lower-text"></span></div>
-        </div>
+        <img id="lower-frame" class="lower__frame" src="./assets/lowerthird-now.svg" alt="">
+        <span id="lower-text" class="lower__text"></span>
       </div>
 
       <p id="announce" class="sr-only" aria-live="polite"></p>

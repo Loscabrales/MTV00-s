@@ -8,114 +8,73 @@
   left: var(--safe-x);
   opacity: 0;
   transform: translateY(-8%);
-  transition: opacity .6s var(--ease-broadcast), transform .6s var(--ease-broadcast), filter .4s linear;
+  transition: opacity .6s var(--ease-broadcast), transform .6s var(--ease-broadcast);
 }
 body[data-power="on"] .bug { opacity: .92; transform: none; }
 .bug__logo {
   display: block;
-  height: 16cqh;
+  height: 12cqh;
   width: auto;
-  filter: drop-shadow(0 .4cqh 1.2cqh rgba(0,0,0,.55));
 }
-.bug[data-glow="true"] { filter: drop-shadow(0 0 1.4cqh var(--pink)); }
 
 /* ---------------- lower third ---------------- */
+/* The bar is the channel's own artwork, used as-is: lowerthird-now.svg and
+   lowerthird-next.svg carry the knob, the banner and the NOW/NEXT label in
+   outlines. Only the track title is live text, positioned over the keyline
+   the file draws at x 65.75..421.25, y 24.75..47.25 of a 425x53 box. */
 .lower {
   position: absolute;
-  left: var(--safe-x);
-  bottom: var(--safe-y);
-  display: flex;
-  align-items: center;
-  gap: 1.2cqh;
-  max-width: calc(100% - (var(--safe-x) * 2));
+  left: 9cqw;
+  bottom: 7cqh;
+  width: 63cqw;
+  aspect-ratio: 425 / 53;
   --lift: 0px;
-  transform: translate(-6%, var(--lift));
+  transform: translateY(var(--lift));
   opacity: 0;
   visibility: hidden;
+  clip-path: inset(0 100% 0 0);
   transition:
-    transform .62s var(--ease-broadcast),
-    opacity .34s linear,
-    visibility 0s linear .62s;
+    clip-path .5s var(--ease-broadcast),
+    transform .4s var(--ease-broadcast),
+    opacity .01s linear .5s,
+    visibility 0s linear .5s;
 }
 .lower[data-state="shown"] {
-  transform: translate(0, var(--lift));
   opacity: 1;
   visibility: visible;
+  clip-path: inset(0 0 0 0);
   transition:
-    transform .62s var(--ease-broadcast),
-    opacity .24s linear,
+    clip-path .5s var(--ease-broadcast),
+    transform .4s var(--ease-broadcast),
+    opacity .01s linear,
     visibility 0s;
 }
 
-.lower__knob {
-  display: flex;
-  align-items: center;
-  gap: .3cqh;
-  flex: none;
-}
-.lower__knob i {
-  width: 4.4cqh;
-  height: 4.4cqh;
-  border-radius: 50%;
-  border: .55cqh solid var(--indigo);
-  background: var(--white);
-  box-shadow: inset 0 0 0 .5cqh var(--white);
-}
-.lower__knob i:last-child {
-  width: 5.6cqh; height: 5.6cqh;
-  background: var(--indigo);
-  box-shadow: inset 0 0 0 .55cqh var(--white);
-}
-
-.lower__bar {
-  display: flex;
-  align-items: stretch;
-  min-width: 0;
-  height: 7.2cqh;
-  padding: .55cqh;
-  gap: .55cqh;
-  background: linear-gradient(180deg, var(--indigo-hi), var(--indigo-lo));
-  border: .3cqh solid var(--white);
-  border-radius: 999px;
-  box-shadow: 0 .8cqh 2.4cqh rgba(0,0,0,.5);
-}
-
-.lower__label {
-  flex: none;
-  display: grid;
-  place-items: center;
-  padding: 0 2.2cqh;
-  background: var(--white);
-  border-radius: 999px;
-  color: var(--indigo);
-  font-family: var(--font-ui);
-  font-weight: 800;
-  font-size: 3.1cqh;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+.lower__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .lower__text {
+  position: absolute;
+  left: 15.47%;    /* 65.75 / 425 */
+  right: 0.88%;    /* (425 - 421.25) / 425 */
+  top: 46.70%;     /* 24.75 / 53  */
+  height: 42.45%;  /* 22.5  / 53  */
   display: grid;
-  place-items: center start;
-  min-width: 0;
-  padding: 0 3cqh 0 1.6cqh;
+  place-items: center;
+  padding: 0 2%;
   color: var(--white);
-  font-family: var(--font-cond);
-  font-weight: 700;
-  font-size: 3.4cqh;
-  letter-spacing: .09em;
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 3.1cqh;
+  letter-spacing: .04em;
+  line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* the bar reveals itself left-to-right, broadcast style */
-.lower[data-state="shown"] .lower__bar { animation: barWipe .55s var(--ease-broadcast) both; }
-@keyframes barWipe {
-  from { clip-path: inset(0 100% 0 0 round 999px); }
-  to   { clip-path: inset(0 0 0 0 round 999px); }
 }
 
 /* ---------------- bumper / ident ---------------- */
@@ -236,11 +195,6 @@ body[data-power="tuning"] .splash {
 .splash__logo {
   width: clamp(210px, 31vmin, 400px);
   height: auto;
-  animation: logoPulse 3.4s ease-in-out infinite;
-}
-@keyframes logoPulse {
-  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
-  50%      { filter: drop-shadow(0 0 30px rgba(255,111,229,.55)); }
 }
 .splash__btn {
   appearance: none;
@@ -300,9 +254,8 @@ body[data-power="tuning"] .stage::after {
 @media (prefers-reduced-motion: reduce) {
   .bumper__flash,
   .bumper__inner,
-  .splash__logo,
   body[data-power="tuning"] .stage::after,
-  .lower[data-state="shown"] .lower__bar { animation: none !important; }
+  .lower { transition-duration: .01ms !important; }
   .static { display: none; }
   * { transition-duration: .01ms !important; }
 }

@@ -1,19 +1,28 @@
-/* MTV 00s — design tokens (2020 pink rebrand) */
+/* MTV 00s — design tokens, taken from the channel's own on-air graphics */
+
+@font-face {
+  font-family: "EurostileUnicaseLTPro";
+  src: url("../assets/eurostileunicaseltpro.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* palette */
-  --pink:        #ffa0fc;   /* the pink from the official MTV 00s artwork */
-  --pink-hot:    #ff3dce;
+  --pink:        #ef93ff;   /* the label pink from the lower third */
+  --pink-hot:    #ffa0fc;   /* the pink of the MTV 00s logo artwork */
   --pink-deep:   #d81fa8;
-  --indigo:      #2b1ac8;
-  --indigo-lo:   #1c0f8f;
-  --indigo-hi:   #4a37f0;
+  --indigo:      #5b1bee;   /* the bar purple from the lower third */
+  --indigo-lo:   #4512c4;
+  --indigo-hi:   #6d31ff;
   --white:       #ffffff;
   --black:       #000000;
   --ink:         #0a0512;
 
   /* type */
-  --font-ui: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-cond: "Archivo Narrow", "Archivo", "Helvetica Neue", Arial Narrow, sans-serif;
+  --font-ui: "EurostileUnicaseLTPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-cond: "EurostileUnicaseLTPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* broadcast safe-area: graphics never touch the very edge */
   --safe-x: clamp(14px, 3.4vmin, 42px);

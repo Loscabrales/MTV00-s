@@ -14,7 +14,7 @@ export function createGraphics() {
   const els = {
     bug: $('bug'),
     lower: $('lower'),
-    lowerLabel: $('lower-label'),
+    lowerFrame: $('lower-frame'),
     lowerText: $('lower-text'),
     announce: $('announce'),
     bumper: $('bumper'),
@@ -31,18 +31,26 @@ export function createGraphics() {
   const later = (fn, ms) => { timers.push(setTimeout(fn, ms)); };
 
   // ---------------------------------------------------------------- lower third
+  // NOW and NEXT are two separate pieces of channel artwork; the label lives
+  // inside the file, so switching strap means switching the file.
+  const STRAPS = {
+    NOW: './assets/lowerthird-now.svg',
+    NEXT: './assets/lowerthird-next.svg',
+  };
+
   function showLower(label, text, holdMs) {
-    els.lowerLabel.textContent = label;
+    const src = STRAPS[label] || STRAPS.NOW;
+    if (!els.lowerFrame.getAttribute('src').endsWith(src.slice(1))) {
+      els.lowerFrame.setAttribute('src', src);
+    }
     els.lowerText.textContent = text;
     els.lower.dataset.state = 'shown';
-    els.bug.dataset.glow = 'true';
     els.announce.textContent = `${label}: ${text}`;
     if (holdMs) later(hideLower, holdMs);
   }
 
   function hideLower() {
     els.lower.dataset.state = 'hidden';
-    els.bug.dataset.glow = 'false';
   }
 
   /**

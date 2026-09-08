@@ -103,28 +103,62 @@ Vevo, mas o YouTube pode bloquear a incorporação de um vídeo a qualquer momen
 e isso varia por país. Quando acontece, o canal marca o clipe como morto, entra
 com um bumper e segue para o próximo — o erro nunca vira tela preta.
 
-## Logo
+## Grafismo
 
-A arte é a oficial, do arquivo vetorial publicado no Wikimedia Commons
+O material é o do próprio canal, usado como veio — nada foi redesenhado ou
+enfeitado. A referência é a vinheta da Dido ("NOW — DIDO - THANK YOU"), e o
+princípio é: se não está naquele quadro, não está aqui. Sem brilho, sem sombra
+projetada, sem gradiente inventado.
+
+### Lower third
+
+`assets/lowerthird-now.svg` e `assets/lowerthird-next.svg` entram inteiros como
+moldura. Os dois anéis, o estandarte e o rótulo NOW/NEXT já estão em contornos
+dentro de cada arquivo — trocar de barra é trocar o `src` (`js/graphics.js`).
+
+Só o nome da faixa é texto vivo, posicionado por porcentagem sobre o filete que
+o próprio arquivo desenha (x 65.75→421.25, y 24.75→47.25 de uma caixa 425×53),
+para que escale sem sair do lugar.
+
+Posição e tamanho vêm de medir o quadro de referência: 63% da largura, margem
+esquerda de 9%, base a 7%.
+
+### Logo
+
+- `assets/logo.svg` — lockup completo (M + MUSIC TELEVISION + pílula 00s), na
+  tela de entrada e nos bumpers.
+- `assets/bug.svg` — versão compacta (M sobre a pílula), no canto da tela e no
+  cabeçalho do guia, com 12% da altura do quadro, como na cena.
+- `assets/favicon.svg` — só o M.
+
+Os três derivam do vetor oficial publicado no Wikimedia Commons
 ([`MTV 00s logo.svg`](https://commons.wikimedia.org/wiki/File:MTV_00s_logo.svg),
 domínio público como forma simples, marca registrada da ViacomCBS Networks
-EMEAA). O arquivo foi limpo (metadados de editor removidos) e derivado em três
-peças:
+EMEAA). No arquivo original o "TV" é um vazado, o que só lê como branco no
+papel; sobre vídeo apareceria preto. Por isso cada peça carrega atrás uma cópia
+da silhueta externa do M preenchida de branco — o vazado lê branco em qualquer
+fundo, sem alterar a geometria da marca.
 
-- `assets/logo.svg` — lockup completo (M + MUSIC TELEVISION + pílula 00s).
-  Tela de entrada e bumpers.
-- `assets/bug.svg` — versão compacta (só o M sobre a pílula 00s). Vai no canto
-  da tela e no cabeçalho do guia, onde o wordmark ficaria ilegível.
-- `assets/favicon.svg` — só o M, sobre fundo preto arredondado.
+### Tipografia
 
-Uma adaptação foi necessária: no arquivo original o "TV" é **vazado**, ou seja,
-um buraco no M. Isso funciona no papel branco, mas sobre vídeo escuro o TV
-apareceria preto. As três peças recebem uma cópia da silhueta externa do M
-preenchida de branco por trás, o que faz o vazado ler como branco em qualquer
-fundo — sem alterar a geometria da marca.
+`assets/eurostileunicaseltpro.otf`, servida localmente por `@font-face` em
+`css/tokens.css`. É a fonte do canal e vale para a interface inteira.
 
-O rosa do sistema (`--pink` em `css/tokens.css`) é o `#ffa0fc` do arquivo
-oficial.
+Ela tem **um peso só**. Por isso `css/layout.css` traz
+`font-synthesis-weight: none`: sem isso o navegador falsifica negrito e engorda
+as letras. Os pesos declarados no CSS ficam sem efeito de propósito — presença
+se dá com corpo e `letter-spacing`, não com negrito.
+
+> **Licença:** a tabela `name` do arquivo traz *"Eurostile is a trademark of
+> Linotype GmbH"* e um EULA da Linotype. É uma fonte comercial, e publicar o
+> `.otf` no GitHub Pages serve o arquivo para qualquer visitante — o que uma
+> licença desktop normalmente não cobre. Para trocar por uma face livre de
+> recorte parecido, é só mudar o `@font-face`.
+
+### Paleta
+
+Tirada do próprio lower third (`css/tokens.css`): roxo da barra `#5b1bee`, rosa
+do rótulo `#ef93ff`, e `#ffa0fc` do vetor do logo.
 
 ## Testes
 
