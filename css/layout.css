@@ -1,0 +1,95 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-synthesis-weight: none;
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-ui);
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { height: 100dvh; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---- the set ---- */
+.tv {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--black);
+}
+
+/* 16:9 stage, letterboxed — the clip is never stretched */
+.stage {
+  position: relative;
+  width: min(100vw, calc(100dvh * 16 / 9));
+  height: min(100dvh, calc(100vw * 9 / 16));
+  overflow: hidden;
+  background: var(--black);
+  isolation: isolate;
+}
+
+.plane {
+  position: absolute;
+  inset: 0;
+}
+.plane--video { z-index: var(--z-video); }
+.plane--gfx   { z-index: var(--z-gfx); pointer-events: none; }
+
+/* the iframe, blown up past the stage edges */
+.player-wrap {
+  position: absolute;
+  inset: 0;
+  transform: scale(var(--overscan));
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.player-wrap iframe,
+.player-wrap > div {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* nothing — no hover, no click, no keypress — ever reaches the iframe */
+.shield {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-shield);
+  background: transparent;
+  cursor: none;
+}
+body[data-ui="on"] .shield { cursor: default; }
+
+/* video is invisible until we are actually on air */
+body[data-power="off"] .plane--video,
+body[data-power="tuning"] .plane--video { opacity: 0; }
+.plane--video { transition: opacity .5s linear; }
+
+/* analogue noise */
+.static {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-static);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s linear;
+  mix-blend-mode: screen;
+}
+.static[data-on="true"] { opacity: .85; }
+
+.offscreen { display: none; }

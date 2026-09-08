@@ -1,0 +1,706 @@
+{
+ "channel": "MTV 00s",
+ "note": "Curated 2000s music videos. Each entry: YouTube id, artist, title, year, duration in seconds. Videos that become unplayable are skipped automatically at runtime.",
+ "items": [
+  {
+   "id": "5qm8PH4xAss",
+   "artist": "50 Cent",
+   "title": "In Da Club",
+   "year": 2003,
+   "duration": 248
+  },
+  {
+   "id": "Urdlvw0SSEc",
+   "artist": "Alicia Keys",
+   "title": "Fallin'",
+   "year": 2001,
+   "duration": 207
+  },
+  {
+   "id": "KUmZp8pR1uc",
+   "artist": "Amy Winehouse",
+   "title": "Rehab",
+   "year": 2006,
+   "duration": 214
+  },
+  {
+   "id": "pK7egZaT3hs",
+   "artist": "Arctic Monkeys",
+   "title": "I Bet You Look Good On The Dancefloor",
+   "year": 2005,
+   "duration": 178
+  },
+  {
+   "id": "5NPBIwQyPWE",
+   "artist": "Avril Lavigne",
+   "title": "Complicated",
+   "year": 2002,
+   "duration": 254
+  },
+  {
+   "id": "TIy3n2b7V9k",
+   "artist": "Avril Lavigne",
+   "title": "Sk8er Boi",
+   "year": 2002,
+   "duration": 219
+  },
+  {
+   "id": "5rAOyh7YmEc",
+   "artist": "Basement Jaxx",
+   "title": "Where's Your Head At",
+   "year": 2001,
+   "duration": 252
+  },
+  {
+   "id": "ViwtNLUqkMY",
+   "artist": "Beyoncé",
+   "title": "Crazy In Love",
+   "year": 2003,
+   "duration": 237
+  },
+  {
+   "id": "4m1EFMoRFvY",
+   "artist": "Beyoncé",
+   "title": "Single Ladies (Put a Ring on It)",
+   "year": 2008,
+   "duration": 201
+  },
+  {
+   "id": "9Ht5RZpzPqw",
+   "artist": "Blink-182",
+   "title": "All The Small Things",
+   "year": 2000,
+   "duration": 171
+  },
+  {
+   "id": "vdkmhquF60o",
+   "artist": "Bloc Party",
+   "title": "Banquet",
+   "year": 2005,
+   "duration": 194
+  },
+  {
+   "id": "LOZuxwVk7TU",
+   "artist": "Britney Spears",
+   "title": "Toxic",
+   "year": 2003,
+   "duration": 212
+  },
+  {
+   "id": "4Rg3sAb8Id8",
+   "artist": "Christina Aguilera",
+   "title": "Dirrty",
+   "year": 2002,
+   "duration": 283
+  },
+  {
+   "id": "yKNxeF4KMsY",
+   "artist": "Coldplay",
+   "title": "Yellow",
+   "year": 2000,
+   "duration": 273
+  },
+  {
+   "id": "RB-RcX5DS5A",
+   "artist": "Coldplay",
+   "title": "The Scientist",
+   "year": 2002,
+   "duration": 266
+  },
+  {
+   "id": "P5lmb5-tnM0",
+   "artist": "Craig David",
+   "title": "7 Days",
+   "year": 2000,
+   "duration": 328
+  },
+  {
+   "id": "FGBhQbmPwH8",
+   "artist": "Daft Punk",
+   "title": "One More Time",
+   "year": 2000,
+   "duration": 322
+  },
+  {
+   "id": "Wmc8bQoL-J0",
+   "artist": "Destiny's Child",
+   "title": "Survivor",
+   "year": 2001,
+   "duration": 251
+  },
+  {
+   "id": "1TO48Cnl66w",
+   "artist": "Dido",
+   "title": "Thank You",
+   "year": 2001,
+   "duration": 194
+  },
+  {
+   "id": "xFYQQPAOz7Y",
+   "artist": "Eminem",
+   "title": "Lose Yourself",
+   "year": 2002,
+   "duration": 328
+  },
+  {
+   "id": "YVkUvmDQ3HY",
+   "artist": "Eminem",
+   "title": "Without Me",
+   "year": 2002,
+   "duration": 298
+  },
+  {
+   "id": "eimgRedLkkU",
+   "artist": "Empire Of The Sun",
+   "title": "Walking On A Dream",
+   "year": 2008,
+   "duration": 200
+  },
+  {
+   "id": "3YxaaGgTQYM",
+   "artist": "Evanescence",
+   "title": "Bring Me To Life",
+   "year": 2003,
+   "duration": 254
+  },
+  {
+   "id": "uhG-vLZrb-g",
+   "artist": "Fall Out Boy",
+   "title": "Sugar, We're Goin Down",
+   "year": 2005,
+   "duration": 230
+  },
+  {
+   "id": "wCDIYvFmgW8",
+   "artist": "Fatboy Slim",
+   "title": "Weapon Of Choice",
+   "year": 2001,
+   "duration": 226
+  },
+  {
+   "id": "SBjQ9tuuTJQ",
+   "artist": "Foo Fighters",
+   "title": "The Pretender",
+   "year": 2007,
+   "duration": 271
+  },
+  {
+   "id": "X9jhwR07yk4",
+   "artist": "Franz Ferdinand",
+   "title": "Take Me Out",
+   "year": 2004,
+   "duration": 238
+  },
+  {
+   "id": "V9Wv4SCBiTE",
+   "artist": "Girls Aloud",
+   "title": "Sound Of The Underground",
+   "year": 2002,
+   "duration": 224
+  },
+  {
+   "id": "-N4jf6rtyuw",
+   "artist": "Gnarls Barkley",
+   "title": "Crazy",
+   "year": 2006,
+   "duration": 181
+  },
+  {
+   "id": "1V_xRb0x9aw",
+   "artist": "Gorillaz",
+   "title": "Clint Eastwood",
+   "year": 2001,
+   "duration": 267
+  },
+  {
+   "id": "HyHNuVaZJ-k",
+   "artist": "Gorillaz",
+   "title": "Feel Good Inc.",
+   "year": 2005,
+   "duration": 255
+  },
+  {
+   "id": "Ee_uujKuJMI",
+   "artist": "Green Day",
+   "title": "American Idiot",
+   "year": 2004,
+   "duration": 182
+  },
+  {
+   "id": "Soa3gO7tL-c",
+   "artist": "Green Day",
+   "title": "Boulevard Of Broken Dreams",
+   "year": 2004,
+   "duration": 288
+  },
+  {
+   "id": "_kE0pxRkMtQ",
+   "artist": "Groove Armada",
+   "title": "Superstylin'",
+   "year": 2001,
+   "duration": 260
+  },
+  {
+   "id": "Kgjkth6BRRY",
+   "artist": "Gwen Stefani",
+   "title": "Hollaback Girl",
+   "year": 2005,
+   "duration": 211
+  },
+  {
+   "id": "1hHSH9sJUEo",
+   "artist": "Jamiroquai",
+   "title": "Little L",
+   "year": 2001,
+   "duration": 237
+  },
+  {
+   "id": "6uikJTnmtgw",
+   "artist": "Jay-Z",
+   "title": "99 Problems",
+   "year": 2004,
+   "duration": 258
+  },
+  {
+   "id": "sy1dYFGkPUE",
+   "artist": "Justice",
+   "title": "D.A.N.C.E.",
+   "year": 2007,
+   "duration": 181
+  },
+  {
+   "id": "DksSPZTZES0",
+   "artist": "Justin Timberlake",
+   "title": "Cry Me A River",
+   "year": 2002,
+   "duration": 291
+  },
+  {
+   "id": "hamKl-su8PE",
+   "artist": "Kaiser Chiefs",
+   "title": "I Predict A Riot",
+   "year": 2004,
+   "duration": 237
+  },
+  {
+   "id": "6vwNcNOTVzY",
+   "artist": "Kanye West",
+   "title": "Gold Digger",
+   "year": 2005,
+   "duration": 222
+  },
+  {
+   "id": "PsO6ZnUZI0g",
+   "artist": "Kanye West",
+   "title": "Stronger",
+   "year": 2007,
+   "duration": 267
+  },
+  {
+   "id": "tAp9BKosZXs",
+   "artist": "Katy Perry",
+   "title": "I Kissed A Girl",
+   "year": 2008,
+   "duration": 185
+  },
+  {
+   "id": "Oextk-If8HQ",
+   "artist": "Keane",
+   "title": "Somewhere Only We Know",
+   "year": 2004,
+   "duration": 237
+  },
+  {
+   "id": "R7UrFYvl5TE",
+   "artist": "Kelly Clarkson",
+   "title": "Since U Been Gone",
+   "year": 2004,
+   "duration": 192
+  },
+  {
+   "id": "iP6XpLQM2Cs",
+   "artist": "Kesha",
+   "title": "TiK ToK",
+   "year": 2009,
+   "duration": 216
+  },
+  {
+   "id": "RF0HhrwIwp0",
+   "artist": "Kings of Leon",
+   "title": "Sex on Fire",
+   "year": 2008,
+   "duration": 208
+  },
+  {
+   "id": "c18441Eh_WE",
+   "artist": "Kylie Minogue",
+   "title": "Can't Get You Out Of My Head",
+   "year": 2001,
+   "duration": 231
+  },
+  {
+   "id": "2Abk1jAONjw",
+   "artist": "Lady Gaga",
+   "title": "Just Dance",
+   "year": 2008,
+   "duration": 247
+  },
+  {
+   "id": "0WxDrVUrSvI",
+   "artist": "Lily Allen",
+   "title": "Smile",
+   "year": 2006,
+   "duration": 200
+  },
+  {
+   "id": "RYnFIRc0k6E",
+   "artist": "Limp Bizkit",
+   "title": "Rollin'",
+   "year": 2000,
+   "duration": 243
+  },
+  {
+   "id": "eVTXPUF4Oz4",
+   "artist": "Linkin Park",
+   "title": "In The End",
+   "year": 2001,
+   "duration": 219
+  },
+  {
+   "id": "kXYiU_JCYtU",
+   "artist": "Linkin Park",
+   "title": "Numb",
+   "year": 2003,
+   "duration": 188
+  },
+  {
+   "id": "pZG7IK99OvI",
+   "artist": "Ludacris",
+   "title": "Stand Up",
+   "year": 2003,
+   "duration": 215
+  },
+  {
+   "id": "XPpTgCho5ZA",
+   "artist": "Maroon 5",
+   "title": "This Love",
+   "year": 2004,
+   "duration": 206
+  },
+  {
+   "id": "znlFu_lemsU",
+   "artist": "Mary J. Blige",
+   "title": "Family Affair",
+   "year": 2001,
+   "duration": 225
+  },
+  {
+   "id": "fe4EK4HSPkI",
+   "artist": "MGMT",
+   "title": "Kids",
+   "year": 2008,
+   "duration": 367
+  },
+  {
+   "id": "0CGVgAYJyjk",
+   "artist": "Mika",
+   "title": "Grace Kelly",
+   "year": 2007,
+   "duration": 196
+  },
+  {
+   "id": "FPoKiGQzbSQ",
+   "artist": "Missy Elliott",
+   "title": "Get Ur Freak On",
+   "year": 2001,
+   "duration": 245
+  },
+  {
+   "id": "cjIvu7e6Wq8",
+   "artist": "Missy Elliott",
+   "title": "Work It",
+   "year": 2002,
+   "duration": 266
+  },
+  {
+   "id": "z3YMxM1_S48",
+   "artist": "Moby",
+   "title": "Natural Blues",
+   "year": 2000,
+   "duration": 263
+  },
+  {
+   "id": "O2IuJPh6h_A",
+   "artist": "Muse",
+   "title": "Time Is Running Out",
+   "year": 2003,
+   "duration": 242
+  },
+  {
+   "id": "RRKJiM9Njr8",
+   "artist": "My Chemical Romance",
+   "title": "Welcome To The Black Parade",
+   "year": 2006,
+   "duration": 315
+  },
+  {
+   "id": "GeZZr_p6vB8",
+   "artist": "Nelly",
+   "title": "Hot In Herre",
+   "year": 2002,
+   "duration": 245
+  },
+  {
+   "id": "PLolag3YSYU",
+   "artist": "Nelly Furtado",
+   "title": "Maneater",
+   "year": 2006,
+   "duration": 308
+  },
+  {
+   "id": "1cQh1ccqu8M",
+   "artist": "Nickelback",
+   "title": "How You Remind Me",
+   "year": 2001,
+   "duration": 229
+  },
+  {
+   "id": "tO4dxvguQDk",
+   "artist": "Norah Jones",
+   "title": "Don't Know Why",
+   "year": 2002,
+   "duration": 183
+  },
+  {
+   "id": "Wp5zZ5cdu98",
+   "artist": "Oasis",
+   "title": "The Hindu Times",
+   "year": 2002,
+   "duration": 254
+  },
+  {
+   "id": "-rKUT6zugJ0",
+   "artist": "OneRepublic",
+   "title": "Apologize",
+   "year": 2007,
+   "duration": 192
+  },
+  {
+   "id": "PWgvGjAhvIw",
+   "artist": "OutKast",
+   "title": "Hey Ya!",
+   "year": 2003,
+   "duration": 304
+  },
+  {
+   "id": "vc6vs-l5dkc",
+   "artist": "Panic! At The Disco",
+   "title": "I Write Sins Not Tragedies",
+   "year": 2006,
+   "duration": 186
+  },
+  {
+   "id": "j0lSpNtjPM8",
+   "artist": "Papa Roach",
+   "title": "Last Resort",
+   "year": 2000,
+   "duration": 199
+  },
+  {
+   "id": "aCyGvGEtOwc",
+   "artist": "Paramore",
+   "title": "Misery Business",
+   "year": 2007,
+   "duration": 200
+  },
+  {
+   "id": "mW1dbiD_zDk",
+   "artist": "Pink",
+   "title": "Get The Party Started",
+   "year": 2001,
+   "duration": 202
+  },
+  {
+   "id": "s88r_q7oufE",
+   "artist": "Queens of the Stone Age",
+   "title": "No One Knows",
+   "year": 2002,
+   "duration": 259
+  },
+  {
+   "id": "3M_Gg1xAHE4",
+   "artist": "Radiohead",
+   "title": "Pyramid Song",
+   "year": 2001,
+   "duration": 297
+  },
+  {
+   "id": "JnfyjwChuNU",
+   "artist": "Red Hot Chili Peppers",
+   "title": "By The Way",
+   "year": 2002,
+   "duration": 218
+  },
+  {
+   "id": "8DyziWtkfBw",
+   "artist": "Red Hot Chili Peppers",
+   "title": "Can't Stop",
+   "year": 2003,
+   "duration": 278
+  },
+  {
+   "id": "CvBfHwUxHIk",
+   "artist": "Rihanna",
+   "title": "Umbrella",
+   "year": 2007,
+   "duration": 255
+  },
+  {
+   "id": "BnO3nijfYmU",
+   "artist": "Robbie Williams",
+   "title": "Rock DJ",
+   "year": 2000,
+   "duration": 258
+  },
+  {
+   "id": "4H5I6y1Qvz0",
+   "artist": "Scissor Sisters",
+   "title": "I Don't Feel Like Dancin'",
+   "year": 2006,
+   "duration": 261
+  },
+  {
+   "id": "weRHyjj34ZE",
+   "artist": "Shakira",
+   "title": "Whenever, Wherever",
+   "year": 2001,
+   "duration": 197
+  },
+  {
+   "id": "ghPcYqn0p4Y",
+   "artist": "Sia",
+   "title": "Breathe Me",
+   "year": 2004,
+   "duration": 203
+  },
+  {
+   "id": "6fVE8kSM43I",
+   "artist": "Slipknot",
+   "title": "Duality",
+   "year": 2004,
+   "duration": 215
+  },
+  {
+   "id": "GtUVQei3nX4",
+   "artist": "Snoop Dogg",
+   "title": "Drop It Like It's Hot",
+   "year": 2004,
+   "duration": 264
+  },
+  {
+   "id": "GemKqzILV4w",
+   "artist": "Snow Patrol",
+   "title": "Chasing Cars",
+   "year": 2006,
+   "duration": 222
+  },
+  {
+   "id": "FHh86ySgKrA",
+   "artist": "Sugababes",
+   "title": "Round Round",
+   "year": 2002,
+   "duration": 246
+  },
+  {
+   "id": "CMX2lPum_pg",
+   "artist": "Sum 41",
+   "title": "Fat Lip",
+   "year": 2001,
+   "duration": 200
+  },
+  {
+   "id": "CSvFpBOe8eY",
+   "artist": "System Of A Down",
+   "title": "Chop Suey!",
+   "year": 2001,
+   "duration": 209
+  },
+  {
+   "id": "WpYeekQkAdc",
+   "artist": "The Black Eyed Peas",
+   "title": "Where Is The Love?",
+   "year": 2003,
+   "duration": 251
+  },
+  {
+   "id": "Xu3FTEmN-eg",
+   "artist": "The Chemical Brothers",
+   "title": "Galvanize",
+   "year": 2005,
+   "duration": 224
+  },
+  {
+   "id": "cjVQ36NhbMk",
+   "artist": "The Fray",
+   "title": "How to Save a Life",
+   "year": 2005,
+   "duration": 267
+  },
+  {
+   "id": "gGdGFtwCNBE",
+   "artist": "The Killers",
+   "title": "Mr. Brightside",
+   "year": 2004,
+   "duration": 228
+  },
+  {
+   "id": "Y5fBdpreJiU",
+   "artist": "The Killers",
+   "title": "Somebody Told Me",
+   "year": 2004,
+   "duration": 203
+  },
+  {
+   "id": "TOypSnKFHrE",
+   "artist": "The Strokes",
+   "title": "Last Nite",
+   "year": 2001,
+   "duration": 202
+  },
+  {
+   "id": "v1c2OfAzDTI",
+   "artist": "The Ting Tings",
+   "title": "That's Not My Name",
+   "year": 2008,
+   "duration": 224
+  },
+  {
+   "id": "0J2QdDbelmY",
+   "artist": "The White Stripes",
+   "title": "Seven Nation Army",
+   "year": 2003,
+   "duration": 239
+  },
+  {
+   "id": "U5rLz5AZBIA",
+   "artist": "Timbaland",
+   "title": "The Way I Are",
+   "year": 2007,
+   "duration": 212
+  },
+  {
+   "id": "eYO1-gGWJyo",
+   "artist": "Travis",
+   "title": "Sing",
+   "year": 2001,
+   "duration": 229
+  },
+  {
+   "id": "GxBSyx85Kp8",
+   "artist": "Usher",
+   "title": "Yeah!",
+   "year": 2004,
+   "duration": 253
+  }
+ ]
+}

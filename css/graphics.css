@@ -1,0 +1,261 @@
+/* On-screen graphics package — everything scales off the stage box */
+.stage { container-type: size; container-name: stage; }
+
+/* ---------------- screen bug (DOG) ---------------- */
+.bug {
+  position: absolute;
+  top: var(--safe-y);
+  left: var(--safe-x);
+  opacity: 0;
+  transform: translateY(-8%);
+  transition: opacity .6s var(--ease-broadcast), transform .6s var(--ease-broadcast);
+}
+body[data-power="on"] .bug { opacity: .92; transform: none; }
+.bug__logo {
+  display: block;
+  height: 12cqh;
+  width: auto;
+}
+
+/* ---------------- lower third ---------------- */
+/* The bar is the channel's own artwork, used as-is: lowerthird-now.svg and
+   lowerthird-next.svg carry the knob, the banner and the NOW/NEXT label in
+   outlines. Only the track title is live text, positioned over the keyline
+   the file draws at x 65.75..421.25, y 24.75..47.25 of a 425x53 box. */
+.lower {
+  position: absolute;
+  left: 9cqw;
+  bottom: 7cqh;
+  width: 63cqw;
+  aspect-ratio: 425 / 53;
+  --lift: 0px;
+  transform: translateY(var(--lift));
+  opacity: 0;
+  visibility: hidden;
+  clip-path: inset(0 100% 0 0);
+  transition:
+    clip-path .5s var(--ease-broadcast),
+    transform .4s var(--ease-broadcast),
+    opacity .01s linear .5s,
+    visibility 0s linear .5s;
+}
+.lower[data-state="shown"] {
+  opacity: 1;
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path .5s var(--ease-broadcast),
+    transform .4s var(--ease-broadcast),
+    opacity .01s linear,
+    visibility 0s;
+}
+
+.lower__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lower__text {
+  position: absolute;
+  left: 15.47%;    /* 65.75 / 425 */
+  right: 0.88%;    /* (425 - 421.25) / 425 */
+  top: 46.70%;     /* 24.75 / 53  */
+  height: 42.45%;  /* 22.5  / 53  */
+  display: grid;
+  place-items: center;
+  padding: 0 2%;
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 3.1cqh;
+  letter-spacing: .04em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------------- bumper / ident ---------------- */
+.bumper {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-bumper);
+  display: grid;
+  place-items: center;
+  /* indigo card: the pink M, the white TV and the white 00s all read on it */
+  background: linear-gradient(180deg, var(--indigo-hi), var(--indigo-lo));
+  overflow: hidden;
+}
+.bumper[hidden] { display: none; }
+.bumper__flash {
+  position: absolute;
+  inset: 0;
+  background: var(--pink-hot);
+  animation: flash .45s var(--ease-snap) both;
+}
+@keyframes flash { from { opacity: 1; } to { opacity: 0; } }
+
+.bumper__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4cqh;
+  animation: bumpIn .5s var(--ease-broadcast) both;
+}
+@keyframes bumpIn {
+  from { transform: scale(.9); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+.bumper__logo {
+  height: 54cqh;
+  width: auto;
+}
+.bumper__strap {
+  display: flex;
+  align-items: center;
+  gap: 1.4cqh;
+  padding: 1.1cqh 2.6cqh;
+  max-width: 88cqw;
+  /* reversed against the indigo card so it does not sink into it */
+  background: var(--white);
+  border-radius: 999px;
+}
+.bumper__kicker {
+  font-weight: 800;
+  font-size: 2.6cqh;
+  letter-spacing: .16em;
+  color: var(--pink-deep);
+}
+.bumper__title {
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 3.2cqh;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--indigo);
+}
+.bumper[data-variant="ident"] .bumper__strap { display: none; }
+
+/* ---------------- paused card (never show YouTube's own pause UI) -------- */
+.paused {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-paused);
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.88);
+  backdrop-filter: blur(6px);
+}
+.paused[hidden] { display: none; }
+.paused__inner {
+  display: flex;
+  align-items: center;
+  gap: 2.4cqh;
+  font-weight: 800;
+  font-size: 5cqh;
+  letter-spacing: .22em;
+  color: var(--pink);
+}
+.paused__bars { display: flex; gap: 1cqh; }
+.paused__bars i {
+  display: block;
+  width: 1.7cqh; height: 6cqh;
+  background: var(--pink);
+  border-radius: .4cqh;
+}
+
+/* ---------------- power-on splash ---------------- */
+.splash {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-splash);
+  display: grid;
+  place-items: center;
+  background: radial-gradient(120% 120% at 50% 45%, #1a0320 0%, var(--black) 70%);
+  transition: opacity .45s linear, visibility 0s linear .45s;
+}
+body[data-power="on"] .splash,
+body[data-power="tuning"] .splash {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.splash__inner {
+  display: grid;
+  justify-items: center;
+  gap: clamp(20px, 4vmin, 44px);
+  padding: 24px;
+  text-align: center;
+}
+.splash__logo {
+  width: clamp(210px, 31vmin, 400px);
+  height: auto;
+}
+.splash__btn {
+  appearance: none;
+  border: 3px solid var(--pink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pink);
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: clamp(16px, 2.6vmin, 26px);
+  letter-spacing: .28em;
+  text-indent: .28em;
+  padding: .75em 2em;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .2s var(--ease-snap);
+}
+.splash__btn:hover,
+.splash__btn:focus-visible { background: var(--pink); color: var(--black); transform: scale(1.04); }
+.splash__hint {
+  margin: 0;
+  font-size: clamp(11px, 1.5vmin, 14px);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+.splash__status {
+  position: absolute;
+  bottom: 6vmin;
+  margin: 0;
+  font-family: var(--font-cond);
+  font-size: clamp(11px, 1.5vmin, 14px);
+  letter-spacing: .3em;
+  color: var(--pink);
+  opacity: .8;
+}
+
+/* CRT power-on sweep */
+body[data-power="tuning"] .stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: var(--white);
+  animation: crtOn .85s var(--ease-snap) both;
+  pointer-events: none;
+}
+@keyframes crtOn {
+  0%   { clip-path: inset(50% 0 50% 0); opacity: 1; }
+  35%  { clip-path: inset(49.5% 0 49.5% 0); opacity: 1; }
+  70%  { clip-path: inset(0 0 0 0); opacity: .5; }
+  100% { clip-path: inset(0 0 0 0); opacity: 0; }
+}
+
+/* focus */
+:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bumper__flash,
+  .bumper__inner,
+  body[data-power="tuning"] .stage::after,
+  .lower { transition-duration: .01ms !important; }
+  .static { display: none; }
+  * { transition-duration: .01ms !important; }
+}

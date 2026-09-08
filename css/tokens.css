@@ -1,0 +1,53 @@
+/* MTV 00s — design tokens, taken from the channel's own on-air graphics */
+
+@font-face {
+  font-family: "EurostileUnicaseLTPro";
+  src: url("../assets/eurostileunicaseltpro.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* palette */
+  --pink:        #ef93ff;   /* the label pink from the lower third */
+  --pink-hot:    #ffa0fc;   /* the pink of the MTV 00s logo artwork */
+  --pink-deep:   #d81fa8;
+  --indigo:      #5b1bee;   /* the bar purple from the lower third */
+  --indigo-lo:   #4512c4;
+  --indigo-hi:   #6d31ff;
+  --white:       #ffffff;
+  --black:       #000000;
+  --ink:         #0a0512;
+
+  /* type */
+  --font-ui: "EurostileUnicaseLTPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-cond: "EurostileUnicaseLTPro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* broadcast safe-area: graphics never touch the very edge */
+  --safe-x: clamp(14px, 3.4vmin, 42px);
+  --safe-y: clamp(12px, 3vmin, 36px);
+
+  /* the iframe is drawn slightly larger than the stage so no YouTube chrome
+     can ever reach a visible edge */
+  --overscan: 1.06;
+
+  /* motion */
+  --ease-broadcast: cubic-bezier(.16, .84, .28, 1);
+  --ease-snap: cubic-bezier(.7, 0, .2, 1);
+
+  /* layers */
+  --z-video: 1;
+  --z-shield: 2;
+  --z-static: 3;
+  --z-gfx: 4;
+  --z-bumper: 5;
+  --z-paused: 6;
+  --z-epg: 7;
+  --z-remote: 8;
+  --z-splash: 9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --overscan: 1.06; }
+}
