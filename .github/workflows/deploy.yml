@@ -40,7 +40,11 @@ jobs:
           print(f'playlist ok: {len(items)} videos')
           PY
 
+      # enablement lets the workflow create the Pages site itself, so the
+      # first deploy does not depend on someone flipping a switch in Settings
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
