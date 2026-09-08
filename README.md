@@ -77,9 +77,13 @@ quebra os módulos ES e o player do YouTube.
 
 ## Publicando no GitHub Pages
 
-O workflow em `.github/workflows/deploy.yml` publica a cada push. Para ligar:
-**Settings → Pages → Source: GitHub Actions**. O site sai em
-`https://<usuário>.github.io/mtv00-s/`.
+**Passo obrigatório uma única vez:** em **Settings → Pages → Source**, escolha
+**GitHub Actions**. Sem isso o deploy falha em `configure-pages` com
+*"Get Pages site failed"* — o token do workflow não tem permissão para criar o
+site sozinho, então esse clique não dá para automatizar.
+
+Feito isso, `.github/workflows/deploy.yml` publica a cada push na `main`. O site
+sai em `https://loscabrales.github.io/MTV00-s/`.
 
 Todos os caminhos são relativos, então funciona em subpasta sem ajuste.
 
